@@ -98,7 +98,7 @@
             self.titleLabel = [UILabel new];
             [self addSubview:self.titleLabel];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(lastAttribute).offset(config.innerMargin);
+                make.top.equalTo(lastAttribute).offset(config.titleTopMargin);
                 make.left.right.equalTo(self).insets(UIEdgeInsetsMake(0, config.innerMargin, 0, config.innerMargin));
             }];
             self.titleLabel.textColor = config.titleColor;
@@ -117,7 +117,7 @@
             [self addSubview:self.detailLabel];
             [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(lastAttribute).offset(5);
-                make.left.right.equalTo(self).insets(UIEdgeInsetsMake(0, config.innerMargin, 0, config.innerMargin));
+                make.left.right.equalTo(self).insets(UIEdgeInsetsMake(0, config.detailLeftRightMargin, 0, config.detailLeftRightMargin));
             }];
             self.detailLabel.textColor = config.detailColor;
             self.detailLabel.textAlignment = NSTextAlignmentCenter;
@@ -152,7 +152,7 @@
         self.buttonView = [UIView new];
         [self addSubview:self.buttonView];
         [self.buttonView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(lastAttribute).offset(config.innerMargin);
+            make.top.equalTo(lastAttribute).offset(config.buttonTopMargin);
             make.left.right.equalTo(self);
         }];
         
@@ -342,30 +342,45 @@
     
     if ( self )
     {
-        self.width          = 275.0f;
-        self.buttonHeight   = 50.0f;
-        self.innerMargin    = 25.0f;
-        self.cornerRadius   = 5.0f;
-
-        self.titleFontSize  = 18.0f;
-        self.detailFontSize = 14.0f;
-        self.buttonFontSize = 17.0f;
         
-        self.backgroundColor    = MMHexColor(0xFFFFFFFF);
-        self.titleColor         = MMHexColor(0x333333FF);
-        self.detailColor        = MMHexColor(0x333333FF);
-        self.splitColor         = MMHexColor(0xCCCCCCFF);
-
-        self.itemNormalColor    = MMHexColor(0x333333FF);
-        self.itemHighlightColor = MMHexColor(0xE76153FF);
-        self.itemPressedColor   = MMHexColor(0xEFEDE7FF);
+        [self config];
         
-        self.defaultTextOK      = @"好";
-        self.defaultTextCancel  = @"取消";
-        self.defaultTextConfirm = @"确定";
     }
     
     return self;
+}
+
+- (void)config {
+    self.width          = 275.0f;
+    self.buttonHeight   = 50.0f;
+    self.innerMargin    = 25.0f;
+    self.cornerRadius   = 5.0f;
+
+    self.titleFontSize  = 18.0f;
+    self.detailFontSize = 14.0f;
+    self.buttonFontSize = 17.0f;
+    
+    self.backgroundColor    = MMHexColor(0xFFFFFFFF);
+    self.titleColor         = MMHexColor(0x333333FF);
+    self.detailColor        = MMHexColor(0x333333FF);
+    self.splitColor         = MMHexColor(0xCCCCCCFF);
+
+    self.itemNormalColor    = MMHexColor(0x333333FF);
+    self.itemHighlightColor = MMHexColor(0xE76153FF);
+    self.itemPressedColor   = MMHexColor(0xEFEDE7FF);
+    
+    self.defaultTextOK      = @"好";
+    self.defaultTextCancel  = @"取消";
+    self.defaultTextConfirm = @"确定";
+    
+    self.titleTopMargin = self.innerMargin;
+    self.detailTopMargin = self.innerMargin;
+    self.detailLeftRightMargin = self.innerMargin;
+    self.buttonTopMargin = self.innerMargin;
+}
+
+- (void)reset {
+    [self config];
 }
 
 @end

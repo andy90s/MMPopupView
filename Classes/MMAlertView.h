@@ -38,6 +38,11 @@ typedef void(^MMPopupInputHandler)(NSString *text);
 + (MMAlertViewConfig*) globalConfig;
 
 @property (nonatomic, assign) CGFloat width;                // Default is 275.
+@property (nonatomic, assign) CGFloat titleTopMargin;    // 标题距离顶部距离
+@property (nonatomic, assign) CGFloat detailTopMargin;   // 副标题距离顶部距离
+@property (nonatomic, assign) CGFloat detailLeftRightMargin; // 副标题左右距离
+@property (nonatomic, assign) CGFloat buttonTopMargin; // 按钮距离副标题距离
+
 @property (nonatomic, assign) CGFloat buttonHeight;         // Default is 50.
 @property (nonatomic, assign) CGFloat innerMargin;          // Default is 25.
 @property (nonatomic, assign) CGFloat cornerRadius;         // Default is 5.
@@ -58,5 +63,7 @@ typedef void(^MMPopupInputHandler)(NSString *text);
 @property (nonatomic, strong) NSString *defaultTextOK;      // Default is "好".
 @property (nonatomic, strong) NSString *defaultTextCancel;  // Default is "取消".
 @property (nonatomic, strong) NSString *defaultTextConfirm; // Default is "确定".
+/// 重置配置;
+- (void)reset;
 
 @end
